@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -28,9 +29,10 @@ func loadQuiz(filename string) (Questions, error) {
 
 func main() {
 	// read command line args
+	filePathPtr := flag.String("file", DefaultQuiz, "filepath for quiz")
 
 	// read quiz
-	quizProblems, err := loadQuiz(DefaultQuiz)
+	quizProblems, err := loadQuiz(*filePathPtr)
 	if err != nil {
 		log.Fatal(err)
 	}
