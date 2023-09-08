@@ -37,11 +37,27 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("%v", quizProblems)
+	nCorrect := 0
 
-	// for every question/answer pair
-	// ask for user input
-	// compare input to answer
+	for i, problem := range quizProblems {
+		// prompt question
+		fmt.Printf("Question %d: %s\n", i+1, problem[0])
+
+		// get answer
+		fmt.Print("your answer: ")
+		var input string
+		_, err := fmt.Scanln(&input)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println()
+
+		// check answer
+		if input == problem[1] {
+			nCorrect++
+		}
+	}
 
 	// display results
+	fmt.Printf("Congrats on finishing! You answered %d/%d questions correct.\n", nCorrect, len(quizProblems))
 }
